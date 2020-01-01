@@ -1,3 +1,4 @@
 cscope*
 tags*
 cmake-build-debug
+.idea
