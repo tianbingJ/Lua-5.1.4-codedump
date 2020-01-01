@@ -1,3 +1,0 @@
-/Users/tianbing/Code/learn/Lua-5.1.4-codedump/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/tianbing/Code/learn/Lua-5.1.4-codedump/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/tianbing/Code/learn/Lua-5.1.4-codedump/cmake-build-debug/CMakeFiles/Lua_5_1_4_codedump.dir
