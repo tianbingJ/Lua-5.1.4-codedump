@@ -334,7 +334,9 @@ typedef union TKey {
   TValue tvk;
 } TKey;
 
-// 每个节点都有key和val
+/**
+ * i_val和i_key分别表示什么含义？
+ */
 typedef struct Node {
   TValue i_val;
   TKey i_key;

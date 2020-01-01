@@ -73,6 +73,14 @@ void *luaM_toobig (lua_State *L) {
 /*
 ** generic allocation routine.
 */
+/**
+ *
+ * @param L
+ * @param block
+ * @param osize
+ * @param nsize
+ * @return
+ */
 void *luaM_realloc_ (lua_State *L, void *block, size_t osize, size_t nsize) {
   global_State *g = G(L);
   lua_assert((osize == 0) == (block == NULL));

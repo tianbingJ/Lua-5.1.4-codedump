@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Lua_5_1_4_codedump"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/tianbing/Code/learn/Lua-5.1.4-codedump/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/tianbing/Code/learn/Lua-5.1.4-codedump/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/tianbing/Code/learn/Lua-5.1.4-codedump/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/tianbing/Code/learn/Lua-5.1.4-codedump/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/tianbing/Code/learn/Lua-5.1.4-codedump/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/tianbing/Code/learn/Lua-5.1.4-codedump/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/tianbing/Code/learn/Lua-5.1.4-codedump/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/tianbing/Code/learn/Lua-5.1.4-codedump/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/tianbing/Code/learn/Lua-5.1.4-codedump/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/tianbing/Code/learn/Lua-5.1.4-codedump/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/tianbing/Code/learn/Lua-5.1.4-codedump/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/tianbing/Code/learn/Lua-5.1.4-codedump/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Lua_5_1_4_codedump">
+				<Option output="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/cmake-build-debug/Lua_5_1_4_codedump" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/etc"/>
+					<Add directory="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.1/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/tianbing/Code/learn/Lua-5.1.4-codedump/cmake-build-debug/Makefile&quot;  VERBOSE=1 Lua_5_1_4_codedump"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/tianbing/Code/learn/Lua-5.1.4-codedump/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/tianbing/Code/learn/Lua-5.1.4-codedump/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/tianbing/Code/learn/Lua-5.1.4-codedump/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Lua_5_1_4_codedump/fast">
+				<Option output="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/cmake-build-debug/Lua_5_1_4_codedump" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/etc"/>
+					<Add directory="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.1/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/tianbing/Code/learn/Lua-5.1.4-codedump/cmake-build-debug/Makefile&quot;  VERBOSE=1 Lua_5_1_4_codedump/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/tianbing/Code/learn/Lua-5.1.4-codedump/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/tianbing/Code/learn/Lua-5.1.4-codedump/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/tianbing/Code/learn/Lua-5.1.4-codedump/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/etc/all.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/etc/lua.hpp">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/etc/min.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/etc/noparser.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/lapi.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/lapi.h">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/lauxlib.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/lauxlib.h">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/lbaselib.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/lcode.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/lcode.h">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/ldblib.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/ldebug.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/ldebug.h">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/ldo.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/ldo.h">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/ldump.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/lfunc.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/lfunc.h">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/lgc.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/lgc.h">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/linit.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/liolib.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/llex.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/llex.h">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/llimits.h">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/lmathlib.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/lmem.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/lmem.h">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/loadlib.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/lobject.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/lobject.h">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/lopcodes.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/lopcodes.h">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/loslib.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/lparser.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/lparser.h">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/lstate.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/lstate.h">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/lstring.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/lstring.h">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/lstrlib.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/ltable.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/ltable.h">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/ltablib.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/ltm.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/ltm.h">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/lua.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/lua.h">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/luac.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/luaconf.h">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/lualib.h">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/lundump.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/lundump.h">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/lvm.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/lvm.h">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/lzio.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/lzio.h">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/src/print.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/test/test.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/test/testusrdata.c">
+			<Option target="Lua_5_1_4_codedump"/>
+		</Unit>
+		<Unit filename="/Users/tianbing/Code/learn/Lua-5.1.4-codedump/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

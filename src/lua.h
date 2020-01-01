@@ -63,6 +63,12 @@ typedef int (*lua_Writer) (lua_State *L, const void* p, size_t sz, void* ud);
 /*
 ** prototype for memory-allocation functions
 */
+
+/**
+ * ptr: 指向block的大小
+ * osize: 旧block大小
+ * nsize: 新空间大小
+ */
 typedef void * (*lua_Alloc) (void *ud, void *ptr, size_t osize, size_t nsize);
 
 
