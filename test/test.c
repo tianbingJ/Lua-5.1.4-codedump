@@ -14,6 +14,5 @@ int main(int argc, char *argv[]) {
   lua_State *L = lua_open();
   luaL_openlibs(L);
   luaL_dofile(L, file);
-
   return 0;
 }
