@@ -2,15 +2,19 @@ cmake_minimum_required(VERSION 3.15)
 project(Lua_5_1_4_codedump)
 
 set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c11 -Wall -Wextra")
+set(CMAKE_BUILD_TYPE Debug)
+
 
 include_directories(etc)
 include_directories(src)
+file(COPY test/my.lua DESTINATION ${CMAKE_BINARY_DIR})
 
 add_executable(Lua_5_1_4_codedump
-        etc/all.c
-        etc/lua.hpp
-        etc/min.c
-        etc/noparser.c
+#        etc/all.c
+#        etc/lua.hpp
+#        etc/min.c
+#        etc/noparser.c
         src/lapi.c
         src/lapi.h
         src/lauxlib.c
@@ -54,9 +58,9 @@ add_executable(Lua_5_1_4_codedump
         src/ltablib.c
         src/ltm.c
         src/ltm.h
-        src/lua.c
+#        src/lua.c
         src/lua.h
-        src/luac.c
+#        src/luac.c
         src/luaconf.h
         src/lualib.h
         src/lundump.c
@@ -67,4 +71,6 @@ add_executable(Lua_5_1_4_codedump
         src/lzio.h
         src/print.c
         test/test.c
-        test/testusrdata.c)
+#        test/testusrdata.c
+        )
+
