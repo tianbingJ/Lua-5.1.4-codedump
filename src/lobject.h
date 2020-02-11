@@ -281,21 +281,25 @@ typedef struct UpVal {
 } UpVal;
 
 
-/*
-** Closures
-*/
-
+/**
+ * isC: 是否是C Closure
+ */
 #define ClosureHeader \
     CommonHeader; lu_byte isC; lu_byte nupvalues; GCObject *gclist; \
     struct Table *env
 
+/**
+ * C语言 Closures
+*/
 typedef struct CClosure {
 	ClosureHeader;
 	lua_CFunction f;
 	TValue upvalue[1];
 } CClosure;
 
-
+/**
+ * Lua Closure
+ */
 typedef struct LClosure {
 	ClosureHeader;
 	struct Proto *p;
@@ -303,6 +307,9 @@ typedef struct LClosure {
 } LClosure;
 
 
+/**
+ *
+ */
 typedef union Closure {
 	CClosure c;
 	LClosure l;

@@ -14,8 +14,8 @@
 
 /*
 ** Expression descriptor
+ * 表达式类型
 */
-
 typedef enum {
 	VVOID,    /* no value */
 	VNIL,
@@ -34,6 +34,9 @@ typedef enum {
 	VVARARG    /* info = instruction pc */
 } expkind;
 
+/**
+ * 保存表达式信息
+ */
 typedef struct expdesc {
 	expkind k;
 	// 保存表达式信息的联合体
@@ -43,6 +46,7 @@ typedef struct expdesc {
 		} s;
 		lua_Number nval;  // 类型为数字的时候存储具体的数据
 	} u;
+	//t和f跟跳转指令有关
 	int t;  /* patch list of `exit when true' */
 	int f;  /* patch list of `exit when false' */
 } expdesc;
@@ -61,7 +65,7 @@ struct BlockCnt;  /* defined in lparser.c */
 typedef struct FuncState {
 	Proto *f;  /* current function header */
 	Table *h;  /* table to find (and reuse) elements in `k' */
-	struct FuncState *prev;  /* enclosing function */
+	struct FuncState *prev;  /* enclosing function, 指向外围的FuncState */
 	struct LexState *ls;  /* lexical state */
 	struct lua_State *L;  /* copy of the Lua state */
 	struct BlockCnt *bl;  /* chain of current blocks */
@@ -69,7 +73,7 @@ typedef struct FuncState {
 	int lasttarget;   /* `pc' of last `jump target' */
 	// 这里存放的是所有空悬,也就是没有确定好跳转位置的pc链表
 	int jpc;  /* list of pending jumps to `pc' */
-	int freereg;  /* first free register */
+	int freereg;  /* first free register, 局部变量放在这个位置*/
 	int nk;  /* number of elements in `k' */
 	int np;  /* number of elements in `p' */
 	short nlocvars;  /* number of elements in `locvars' */

@@ -246,7 +246,7 @@ name		args	description
 
 enum OpArgMask {
 	OpArgN,  /* argument is not used */
-	OpArgU,  /* argument is used */
+	OpArgU,  /* argument is used, 是指没有作为R()或者PK()的参数使用，可以所谓常量被使用*/
 	OpArgR,  /* argument is a register or a jump offset */
 	OpArgK   /* argument is a constant or register/constant */
 };

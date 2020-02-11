@@ -44,7 +44,7 @@ const char lua_ident[] =
 
 
 /**
- *
+ * 获取栈中idx对应的value.
  * @param L
  * @param idx
  * @return
@@ -57,7 +57,7 @@ static TValue *index2adr(lua_State *L, int idx) {
 		if (o >= L->top) return cast(TValue *, luaO_nilobject);
 		else return o;
 	} else if (idx > LUA_REGISTRYINDEX) {
-		// 如果LUA_REGISTRYINDEX > idx < 0,则从栈中top为基础位置取元素
+		// idx < 0 && idx > LUA_REGISTRYINDEX, 则从栈中top为基础位置取元素
 		api_check(L, idx != 0 && -idx <= L->top - L->base);
 		return L->top + idx;
 	} else
@@ -463,6 +463,7 @@ LUA_API void lua_pushinteger(lua_State *L, lua_Integer n) {
 LUA_API void lua_pushlstring(lua_State *L, const char *s, size_t len) {
 	lua_lock(L);
 	luaC_checkGC(L);
+	//没有强制类型转换，只是设置了string的值
 	setsvalue2s(L, L->top, luaS_newlstr(L, s, len));
 	api_incr_top(L);
 	lua_unlock(L);

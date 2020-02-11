@@ -90,6 +90,12 @@ int luaO_rawequalObj(const TValue *t1, const TValue *t2) {
 }
 
 
+/**
+ * 把string转换成数字
+ * @param s data
+ * @param result  数字
+ * @return
+ */
 int luaO_str2d(const char *s, lua_Number *result) {
 	char *endptr;
 	*result = lua_str2number(s, &endptr);

@@ -125,16 +125,44 @@ LUA_API lua_CFunction (lua_atpanic)(lua_State *L, lua_CFunction panicf);
 /*
 ** basic stack manipulation
 */
+/**
+ * 返回栈中元素的个数
+ * @param L
+ * @return
+ */
 LUA_API int (lua_gettop)(lua_State *L);
 
+/**
+ * 设置栈中元素的个数；多余的部分舍弃；少于的部分用nil填充;
+ * idx可以是负数，idx < 0是什么含义？
+ * @param L
+ * @param idx
+ */
 LUA_API void (lua_settop)(lua_State *L, int idx);
 
+/**
+ * 指定索引上元素的副本压入栈
+ * @param L
+ * @param idx
+ */
 LUA_API void (lua_pushvalue)(lua_State *L, int idx);
+
 
 LUA_API void (lua_remove)(lua_State *L, int idx);
 
+/**
+ * idx上面的元素上移
+ * 把栈顶的元素插入到idx位置.
+ * @param L
+ * @param idx
+ */
 LUA_API void (lua_insert)(lua_State *L, int idx);
 
+/**
+ * 用栈顶元素替换idx位置的元素
+ * @param L
+ * @param idx
+ */
 LUA_API void (lua_replace)(lua_State *L, int idx);
 
 LUA_API int (lua_checkstack)(lua_State *L, int sz);

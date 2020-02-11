@@ -477,9 +477,9 @@ LUA_API int lua_yield(lua_State *L, int nresults) {
 	return -1;
 }
 
-// 带错误保护的函数调用
 /**
  *
+ * 带错误保护的函数调用
  * @param L
  * @param func  f_parser方法
  * @param u Sparser对象
@@ -527,6 +527,11 @@ struct SParser {  /* data to `f_parser' */
 	const char *name;
 };
 
+/**
+ * 根据文件类型选择是：二进制parse方法：luaU_undump  还是源代码parse方法：luaY_parser
+ * @param L
+ * @param ud
+ */
 static void f_parser(lua_State *L, void *ud) {
 	int i;
 	Proto *tf;

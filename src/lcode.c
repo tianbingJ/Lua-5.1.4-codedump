@@ -222,7 +222,11 @@ void luaK_checkstack(FuncState *fs, int n) {
 	}
 }
 
-// 函数栈预留多少位置
+/**
+ * 函数栈预留多少空间
+ * @param fs
+ * @param n
+ */
 void luaK_reserveregs(FuncState *fs, int n) {
 	luaK_checkstack(fs, n);
 	fs->freereg += n;
@@ -312,7 +316,6 @@ void luaK_setreturns(FuncState *fs, expdesc *e, int nresults) {
 	}
 }
 
-// ??????
 void luaK_setoneret(FuncState *fs, expdesc *e) {
 	if (e->k == VCALL) {  /* expression is an open function call? */
 		e->k = VNONRELOC;
@@ -325,6 +328,12 @@ void luaK_setoneret(FuncState *fs, expdesc *e) {
 
 // 这里的重点是设置e->k,即是否需要重定向
 // 为什么在luaK_exp2nextreg函数和discharge2reg函数中分别被调用两次
+/**
+ * 重定向寄存器
+ * 这个方法会改变e.expkind
+ * @param fs FunctionState
+ * @param e
+ */
 void luaK_dischargevars(FuncState *fs, expdesc *e) {
 	switch (e->k) {
 		case VLOCAL: {
@@ -449,12 +458,16 @@ static void exp2reg(FuncState *fs, expdesc *e, int reg) {
 	e->k = VNONRELOC;
 }
 
-// 讲表达式dump到当前栈的下一个位置中
+/**
+ * 比较重要的一个函数，把右侧值表达式放入到合适的寄存器当中
+ * 把当前表达式放入到寄存器里面
+ * @param fs
+ * @param e
+ */
 void luaK_exp2nextreg(FuncState *fs, expdesc *e) {
 	// 首先如果是一个变量的话 现在根据变量类型(upval, GLOBAL, LOCAL)dump出来
 	luaK_dischargevars(fs, e);
 	freeexp(fs, e);
-	// 将freereg+1, 也就是参数数量加1
 	luaK_reserveregs(fs, 1);
 	// 将表达式dump到这个新分配的栈空间中
 	exp2reg(fs, e, fs->freereg - 1);

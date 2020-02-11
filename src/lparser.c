@@ -99,6 +99,13 @@ static void checknext(LexState *ls, int c) {
 #define check_condition(ls, c, msg)    { if (!(c)) luaX_syntaxerror(ls, msg); }
 
 
+/**
+ *
+ * @param ls LexState
+ * @param what 期望匹配的token, 比如')'
+ * @param who  需要被匹配的内容，比如'('
+ * @param where 行号
+ */
 static void check_match(LexState *ls, int what, int who, int where) {
 	if (!testnext(ls, what)) {
 		if (where == ls->linenumber)
@@ -355,6 +362,11 @@ static void pushclosure(LexState *ls, FuncState *func, expdesc *v) {
 }
 
 
+/**
+ * 初始化FuncState
+ * @param ls
+ * @param fs
+ */
 static void open_func(LexState *ls, FuncState *fs) {
 	lua_State *L = ls->L;
 	Proto *f = luaF_newproto(L);
@@ -413,7 +425,10 @@ static void close_func(LexState *ls) {
 	if (fs) anchor_token(ls);
 }
 
-// 分析一个lua源代码文件的主函数
+/**
+ * 分析lua文件的主函数
+ * 这个是main函数?
+ */
 Proto *luaY_parser(lua_State *L, ZIO *z, Mbuffer *buff, const char *name) {
 	struct LexState lexstate;
 
@@ -639,8 +654,13 @@ static void body(LexState *ls, expdesc *e, int needself, int line) {
 	pushclosure(ls, &new_fs, e);
 }
 
-// 构造表达式列表,返回值是表达式的数量
-// 如果是表达式列表，则依次dump到寄存器中
+/**
+ *
+ * a, b = expr1,expr2
+ * @param ls lexState
+ * @param v  表达式
+ * @return 返回值是表达式的数量
+ */
 static int explist1(LexState *ls, expdesc *v) {
 	/* explist1 -> expr { `,' expr } */
 	int n = 1;  /* at least one expression */
@@ -711,12 +731,12 @@ static void funcargs(LexState *ls, expdesc *f) {
 
 
 /*
-** {======================================================================
 ** Expression parsing
-** =======================================================================
+ * pramary expression的prefix部分
+ *
+ * exp -> prefixexp
+ * prefixexp -> var | functioncall | '('exp')'
 */
-
-// 读取一个表达式或者一个变量
 static void prefixexp(LexState *ls, expdesc *v) {
 	/* prefixexp -> NAME | '(' expr ')' */
 	switch (ls->t.token) {
@@ -741,7 +761,12 @@ static void prefixexp(LexState *ls, expdesc *v) {
 	}
 }
 
-// primaryexp是从哪里来的?啥时候需要它???
+/**
+ *
+ * primaryexp是从哪里来的?啥时候需要它???
+ * @param ls
+ * @param v
+ */
 static void primaryexp(LexState *ls, expdesc *v) {
 	/* primaryexp ->
 		  prefixexp { `.' NAME | `[' exp `]' | `:' NAME funcargs | funcargs } */
@@ -1026,7 +1051,12 @@ static void check_conflict(LexState *ls, struct LHS_assign *lh, expdesc *v) {
 	}
 }
 
-// 赋值表达式的处理， 传入的lh，是=号左边的表达式
+/**
+ * 赋值表达式的处理， 传入的lh，是=号左边的表达式
+ * @param ls
+ * @param lh
+ * @param nvars
+ */
 static void assignment(LexState *ls, struct LHS_assign *lh, int nvars) {
 	expdesc e;
 	check_condition(ls, VLOCAL <= lh->v.k && lh->v.k <= VINDEXED,
@@ -1292,6 +1322,10 @@ static void localfunc(LexState *ls) {
 }
 
 
+/**
+ * 局部变量
+ * @param ls
+ */
 static void localstat(LexState *ls) {
 	/* stat -> LOCAL NAME {`,' NAME} [`=' explist1] */
 	int nvars = 0;
@@ -1355,8 +1389,8 @@ static void exprstat(LexState *ls) {
 	primaryexp(ls, &v.v);
 	if (v.v.k == VCALL)  /* stat -> func */
 		SETARG_C(getcode(fs, &v.v), 1);  /* call statement uses no results */
-	else {  /* stat -> assignment */
-		// 此时是赋值情况
+	else {
+		/* stat -> assignment */
 		v.prev = NULL;
 		assignment(ls, &v, 1);
 	}
@@ -1457,13 +1491,17 @@ static int statement(LexState *ls) {
 }
 
 
+/**
+ *
+ * @param ls
+ */
 static void chunk(LexState *ls) {
 	/* chunk -> { stat [`;'] } */
 	int islast = 0;
 	enterlevel(ls);
 	while (!islast && !block_follow(ls->t.token)) {
 		islast = statement(ls);
-		testnext(ls, ';');
+		testnext(ls, ';'); //如果下一个字符是';' 则消耗掉
 		lua_assert(ls->fs->f->maxstacksize >= ls->fs->freereg &&
 				   ls->fs->freereg >= ls->fs->nactvar);
 		// 调整freereg

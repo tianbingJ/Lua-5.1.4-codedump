@@ -32,7 +32,8 @@
 
 /* ORDER RESERVED */
 const char *const luaX_tokens[] = {
-		"and", "break", "do", "else", "elseif",
+		"and",
+		"break","do", "else", "elseif",
 		"end", "false", "for", "function", "if",
 		"in", "local", "nil", "not", "or", "repeat",
 		"return", "then", "true", "until", "while",
@@ -134,6 +135,9 @@ static void inclinenumber(LexState *ls) {
 }
 
 
+/**
+ * 初始化词法分析的input
+ */
 void luaX_setinput(lua_State *L, LexState *ls, ZIO *z, TString *source) {
 	ls->decpoint = '.';
 	ls->L = L;

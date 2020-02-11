@@ -102,9 +102,9 @@ typedef struct global_State {
 */
 struct lua_State {
 	CommonHeader;
-	lu_byte status;
+	lu_byte status; //状态，定义在lua.h中， 0表示OK
 	StkId top;  /* first free slot in the stack, 当前栈下一个可用的位置*/
-	StkId base;  /* base of current function, 当前函数的base，随着新的函数调用会发生变化*/
+	StkId base;  /* base of current function, base是对当前函数而言，当前函数的栈底，随着新的函数调用会发生变化,*/
 	global_State *l_G;
 	CallInfo *ci;  /* call info for current function */
 	const Instruction *savedpc;  /* `savedpc' of current function */

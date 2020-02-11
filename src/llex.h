@@ -23,13 +23,38 @@
 */
 enum RESERVED {
 	/* terminal symbols denoted by reserved words */
-			TK_AND = FIRST_RESERVED, TK_BREAK,
-	TK_DO, TK_ELSE, TK_ELSEIF, TK_END, TK_FALSE, TK_FOR, TK_FUNCTION,
-	TK_IF, TK_IN, TK_LOCAL, TK_NIL, TK_NOT, TK_OR, TK_REPEAT,
-	TK_RETURN, TK_THEN, TK_TRUE, TK_UNTIL, TK_WHILE,
+			TK_AND = FIRST_RESERVED, //and
+			TK_BREAK, //break
+			TK_DO,  //do
+			TK_ELSE, //else
+			TK_ELSEIF, //elseif
+			TK_END,    //end
+			TK_FALSE,  //false
+			TK_FOR,   //for
+			TK_FUNCTION, //function
+			TK_IF,       //if
+			TK_IN,      //in
+			TK_LOCAL,   //local
+			TK_NIL,     //nil
+			TK_NOT,     //not
+			TK_OR,      //or
+			TK_REPEAT,  //repeat
+			TK_RETURN,  //return
+			TK_THEN,    //then
+			TK_TRUE,    //true
+			TK_UNTIL,   //until
+			TK_WHILE,  //while
 	/* other terminal symbols */
-			TK_CONCAT, TK_DOTS, TK_EQ, TK_GE, TK_LE, TK_NE, TK_NUMBER,
-	TK_NAME, TK_STRING, TK_EOS
+			TK_CONCAT,  //..
+			TK_DOTS,    //...
+			TK_EQ,      // "=="
+			TK_GE,     //">="
+			TK_LE,     //<=
+			TK_NE,     //~=
+			TK_NUMBER, //number
+			TK_NAME,   //name
+			TK_STRING, //string
+			TK_EOS    //eof
 };
 
 /* number of reserved words */

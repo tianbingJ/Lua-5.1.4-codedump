@@ -28,7 +28,13 @@ Closure *luaF_newCclosure(lua_State *L, int nelems, Table *e) {
 	return c;
 }
 
-// 创建一个lua函数调用, nelems是该函数的upval数量
+/**
+ * 创建一个lua函数调用, nelems是该函数的upval数量
+ * @param L
+ * @param nelems
+ * @param e
+ * @return
+ */
 Closure *luaF_newLclosure(lua_State *L, int nelems, Table *e) {
 	Closure *c = cast(Closure *, luaM_malloc(L, sizeLclosure(nelems)));
 	luaC_link(L, obj2gco(c), LUA_TFUNCTION);
