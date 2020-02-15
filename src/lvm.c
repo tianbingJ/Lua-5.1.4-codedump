@@ -103,14 +103,13 @@ static void callTM(lua_State *L, const TValue *f, const TValue *p1,
 }
 
 /**
- *
  * 在一个table中查找key对应的值, 找到存放到val中
  * 对于getGlobal, table是GL
  * 对于getTable， table是要查询的table
  * @param L
- * @param t
- * @param key
- * @param val
+ * @param t 要查询的table
+ * @param key 要查询的key
+ * @param val 返回的结果
  */
 void luaV_gettable(lua_State *L, const TValue *t, TValue *key, StkId val) {
 	int loop;

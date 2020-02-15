@@ -59,6 +59,13 @@ const TValue *luaT_gettm(Table *events, TMS event, TString *ename) {
 }
 
 
+/**
+ *
+ * @param L
+ * @param o
+ * @param event
+ * @return
+ */
 const TValue *luaT_gettmbyobj(lua_State *L, const TValue *o, TMS event) {
 	Table *mt;
 	switch (ttype(o)) {

@@ -107,7 +107,7 @@ struct lua_State {
 	StkId base;  /* base of current function, base是对当前函数而言，当前函数的栈底，随着新的函数调用会发生变化,*/
 	global_State *l_G;
 	CallInfo *ci;  /* call info for current function */
-	const Instruction *savedpc;  /* `savedpc' of current function */
+	const Instruction *savedpc;  /* `savedpc' of current function*/
 	StkId stack_last;  /* last free slot in the stack */
 	StkId stack;  /* stack base, 栈的起始位置 */
 	CallInfo *end_ci;  /* points after end of ci array*/
@@ -116,7 +116,7 @@ struct lua_State {
 	int size_ci;  /* size of array `base_ci' */
 	unsigned short nCcalls;  /* number of nested C calls */
 	unsigned short baseCcalls;  /* nested C calls when resuming coroutine */
-	lu_byte hookmask;
+	lu_byte hookmask; //
 	lu_byte allowhook;
 	int basehookcount;
 	int hookcount;

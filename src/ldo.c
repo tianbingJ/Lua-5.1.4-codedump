@@ -266,12 +266,19 @@ static StkId tryfuncTM(lua_State *L, StkId func) {
    (condhardstacktests(luaD_reallocCI(L, L->size_ci)), ++L->ci))
 
 // 函数调用的预处理, func是函数closure所在位置, nresults是返回值数量
+/**
+ *
+ * @param L
+ * @param func 调用栈中函数定义在的位置
+ * @param nresults
+ * @return
+ */
 int luaD_precall(lua_State *L, StkId func, int nresults) {
 	LClosure *cl;
 	ptrdiff_t funcr;
 	if (!ttisfunction(func)) /* `func' is not a function? */
 		func = tryfuncTM(L, func);  /* check the `function' tag method */
-	// 首先计算函数指针距离stack的偏移量
+	// 首先计算函数指针距离stack的偏移量, 字节表示的单位
 	funcr = savestack(L, func);
 	// 获取closure指针
 	cl = &clvalue(func)->l;
@@ -281,6 +288,7 @@ int luaD_precall(lua_State *L, StkId func, int nresults) {
 		CallInfo *ci;
 		StkId st, base;
 		Proto *p = cl->p;
+		//栈可能会被从新分配，所以不能使用地址，而是使用stack + funcr
 		luaD_checkstack(L, p->maxstacksize);
 		func = restorestack(L, funcr);
 		if (!p->is_vararg) {  /* no varargs? */

@@ -224,6 +224,7 @@ typedef union Udata {
 */
 typedef struct Proto {
 	CommonHeader;
+	//常量池，数组，动态扩展
 	TValue *k;  /* constants used by the function */
 	// 存放函数体的opcode
 	Instruction *code;

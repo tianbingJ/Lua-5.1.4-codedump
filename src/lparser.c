@@ -135,11 +135,19 @@ static void init_exp(expdesc *e, expkind k, int i) {
 }
 
 
+/**
+ * string添加到常量池中, expdesc.k = VK, info = 常量池中的下表
+ * @param ls
+ * @param e
+ * @param s
+ */
 static void codestring(LexState *ls, expdesc *e, TString *s) {
 	init_exp(e, VK, luaK_stringK(ls->fs, s));
 }
 
-
+/**
+ * string添加到常量池中, expdesc.k = VK, info = 常量池中的下表
+ */
 static void checkname(LexState *ls, expdesc *e) {
 	codestring(ls, e, str_checkname(ls));
 }
@@ -342,6 +350,12 @@ static void leaveblock(FuncState *fs) {
 }
 
 // 向全局CLOSURE数组新增一个CLOSURE
+/**
+ * 把func中的Proto指针保存到父函数FuncState
+ * @param ls
+ * @param func
+ * @param v
+ */
 static void pushclosure(LexState *ls, FuncState *func, expdesc *v) {
 	FuncState *fs = ls->fs;
 	Proto *f = fs->f;
@@ -350,6 +364,7 @@ static void pushclosure(LexState *ls, FuncState *func, expdesc *v) {
 	luaM_growvector(ls->L, f->p, fs->np, f->sizep, Proto *,
 					MAXARG_Bx, "constant table overflow");
 	while (oldsize < f->sizep) f->p[oldsize++] = NULL;
+	//Proto保存到父函数的p数组里面
 	f->p[fs->np++] = func->f;
 	luaC_objbarrier(ls->L, f, func->f);
 	// 初始化表达式v为closure
@@ -398,12 +413,16 @@ static void open_func(LexState *ls, FuncState *fs) {
 }
 
 
+/**
+ * 关闭FuncState
+ * @param ls
+ */
 static void close_func(LexState *ls) {
 	lua_State *L = ls->L;
 	FuncState *fs = ls->fs;
 	Proto *f = fs->f;
 	removevars(ls, 0);
-	// 为什么要加上这一句return调用？难道是因为要处理某些情况没有返回值的情况么？
+	//默认每个方法都加一个ret语句
 	luaK_ret(fs, 0, 0);  /* final return */
 	luaM_reallocvector(L, f->code, f->sizecode, fs->pc, Instruction);
 	f->sizecode = fs->pc;
@@ -419,6 +438,7 @@ static void close_func(LexState *ls) {
 	f->sizeupvalues = f->nups;
 	lua_assert(luaG_checkcode(f));
 	lua_assert(fs->bl == NULL);
+	//LexState的FuncState还原成父函数的FuncState
 	ls->fs = fs->prev;
 	L->top -= 2;  /* remove table and prototype from the stack */
 	/* last token read was anchored in defunct function; must reanchor it */
@@ -482,7 +502,10 @@ static void yindex(LexState *ls, expdesc *v) {
 ** =======================================================================
 */
 
-
+/**
+ * 表的初始化构造信息
+ * local p = {...}
+ */
 struct ConsControl {
 	expdesc v;  /* last list item read */
 	expdesc *t;  /* table descriptor */
@@ -492,12 +515,18 @@ struct ConsControl {
 };
 
 
+/**
+ * 处理表constructor hash元素的初始化
+ * @param ls
+ * @param cc
+ */
 static void recfield(LexState *ls, struct ConsControl *cc) {
 	/* recfield -> (NAME | `['exp1`]') = exp1 */
 	FuncState *fs = ls->fs;
 	int reg = ls->fs->freereg;
 	expdesc key, val;
 	int rkkey;
+	//"key" = XXX
 	if (ls->t.token == TK_NAME) {
 		luaY_checklimit(fs, cc->nh, MAX_INT, "items in a constructor");
 		checkname(ls, &key);
@@ -512,9 +541,15 @@ static void recfield(LexState *ls, struct ConsControl *cc) {
 }
 
 
+/**
+ * 生成相关指令
+ * @param fs
+ * @param cc
+ */
 static void closelistfield(FuncState *fs, struct ConsControl *cc) {
 	if (cc->v.k == VVOID) return;  /* there is no list item */
 	luaK_exp2nextreg(fs, &cc->v);
+	//为什么又把cc->v.k设置为VVOID
 	cc->v.k = VVOID;
 	if (cc->tostore == LFIELDS_PER_FLUSH) {
 		luaK_setlist(fs, cc->t->u.s.info, cc->na, cc->tostore);  /* flush */
@@ -545,6 +580,13 @@ static void listfield(LexState *ls, struct ConsControl *cc) {
 }
 
 
+/**
+ * 表构造函数
+ * 区分array和hash部分的规则：
+ * 遇到x = XX 或者["x"] = XX是hash部分，其他情况都是array
+ * @param ls
+ * @param t
+ */
 static void constructor(LexState *ls, expdesc *t) {
 	/* constructor -> ?? */
 	FuncState *fs = ls->fs;
@@ -556,6 +598,7 @@ static void constructor(LexState *ls, expdesc *t) {
 	cc.t = t;
 	init_exp(t, VRELOCABLE, pc);
 	init_exp(&cc.v, VVOID, 0);  /* no value (yet) */
+	//修正A寄存器地址
 	luaK_exp2nextreg(ls->fs, t);  /* fix it at stack top (for gc) */
 	checknext(ls, '{');
 	do {
@@ -563,7 +606,7 @@ static void constructor(LexState *ls, expdesc *t) {
 		if (ls->t.token == '}') break;
 		closelistfield(fs, &cc);
 		switch (ls->t.token) {
-			case TK_NAME: {  /* may be listfields or recfields */
+			case TK_NAME: {  /* may be listfields or recfields, array部分和hash部分 */
 				luaX_lookahead(ls);
 				if (ls->lookahead.token != '=')  /* expression? */
 					listfield(ls, &cc);
@@ -583,6 +626,7 @@ static void constructor(LexState *ls, expdesc *t) {
 	} while (testnext(ls, ',') || testnext(ls, ';'));
 	check_match(ls, '}', '{', line);
 	lastlistfield(fs, &cc);
+	//修正B和C寄存器地址
 	SETARG_B(fs->f->code[pc], luaO_int2fb(cc.na)); /* set initial array size */
 	SETARG_C(fs->f->code[pc], luaO_int2fb(cc.nh));  /* set initial table size */
 }
@@ -629,8 +673,19 @@ static void parlist(LexState *ls) {
 }
 
 
+/**
+ * 解析方法定义，最后放到父函数的Proto数组中
+ * @param ls
+ * @param e
+ * @param needself
+ * @param line
+ */
 static void body(LexState *ls, expdesc *e, int needself, int line) {
 	/* body ->  `(' parlist `)' chunk END */
+	/*
+	 * new_fs是个局部变量，body方法结束之后不会被释放吗？
+	 * FuncState是语法分析的临时结构，可以被释放
+	 */
 	FuncState new_fs;
 	// 这里初始化了FuncState结构体,注意到将new_fs与之前的FuncState结构体链接在一起
 	open_func(ls, &new_fs);
@@ -929,10 +984,12 @@ static const struct {
 		{5,  4},                 /* power and concat (right associative) */
 		{3,  3},
 		{3,  3},                  /* equality and inequality */
+
 		{3,  3},
 		{3,  3},
 		{3,  3},
 		{3,  3},  /* order */
+
 		{2,  2},
 		{1,  1}                   /* logical (and/or) */
 };
@@ -945,8 +1002,8 @@ static const struct {
 ** where `binop' is any binary operator with a priority higher than `limit'
 */
 static BinOpr subexpr(LexState *ls, expdesc *v, unsigned int limit) {
-	BinOpr op;
-	UnOpr uop;
+	BinOpr op; //两元操作符
+	UnOpr uop; //一元操作符
 	enterlevel(ls);
 	uop = getunopr(ls->t.token);
 	if (uop != OPR_NOUNOPR) {

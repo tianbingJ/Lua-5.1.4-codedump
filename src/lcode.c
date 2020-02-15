@@ -247,7 +247,15 @@ static void freeexp(FuncState *fs, expdesc *e) {
 		freereg(fs, e->u.s.info);
 }
 
-// 向函数寄存器添加常量
+/**
+ * string类型
+ * 检查常量是否存在，如果不存在则创建常量。
+ * 向函数寄存器添加常量
+ * @param fs
+ * @param k
+ * @param v
+ * @return
+ */
 static int addk(FuncState *fs, TValue *k, TValue *v) {
 	lua_State *L = fs->L;
 	// 得到key的index
@@ -275,7 +283,9 @@ static int addk(FuncState *fs, TValue *k, TValue *v) {
 	}
 }
 
-// 创建一个字符串常量
+/**
+ * 创建一个字符串常量，并添加到常量池中
+*/
 int luaK_stringK(FuncState *fs, TString *s) {
 	TValue o;
 	setsvalue(fs->L, &o, s);
@@ -329,8 +339,8 @@ void luaK_setoneret(FuncState *fs, expdesc *e) {
 // 这里的重点是设置e->k,即是否需要重定向
 // 为什么在luaK_exp2nextreg函数和discharge2reg函数中分别被调用两次
 /**
- * 重定向寄存器
- * 这个方法会改变e.expkind
+ * 根据类型判断是否需要重定向寄存器, 这个方法会改变e.expkind
+ * 对于需要重定向的情况， 指令中A = 0，此时不知道该用哪个寄存器，需要到后面调用discharge2reg时才知道用哪个寄存器
  * @param fs FunctionState
  * @param e
  */
@@ -477,7 +487,7 @@ void luaK_exp2nextreg(FuncState *fs, expdesc *e) {
 int luaK_exp2anyreg(FuncState *fs, expdesc *e) {
 	// 首先要把变量dump出来
 	luaK_dischargevars(fs, e);
-	if (e->k == VNONRELOC) {  // 不需要重定向
+	if (e->k == VNONRELOC) {
 		// 不是跳转指令
 		if (!hasjumps(e)) return e->u.s.info;  /* exp is already in a register */
 		// 大于当前的local变量数量
@@ -500,6 +510,12 @@ void luaK_exp2val(FuncState *fs, expdesc *e) {
 }
 
 
+/**
+ *
+ * @param fs
+ * @param e
+ * @return 寄存器下标
+ */
 int luaK_exp2RK(FuncState *fs, expdesc *e) {
 	luaK_exp2val(fs, e);
 	switch (e->k) {
